@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Chatroom</title>
+    </head>
+    <body>
+        <label for="nickname">Nickname:</label><input type="text" id="nickname"></input>
+        <div id="messages"></div>
+        <textarea id="message"></textarea>
+        <a id="send">Send</a>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost');
+
+            socket.on('message', function(evt) { 
+                document.querySelector("#messages").innerHTML += '<p><span class="nickname">'+evt.nickname+': </span><span class="message">' + evt.message +'</span></p>';
+            });
+
+            sendButton = document.querySelector("#send");
+            var messages = document.querySelector("#message");
+            sendButton.addEventListener('click', function() {
+
+                socket.emit('message', {
+                  "message": messages.value,
+                  "nickname": document.querySelector("#nickname").value || 'Guest'
+                });
+
+                messages.value = "";
+            });
+        </script>
+
+                
+    </body>
+</html>

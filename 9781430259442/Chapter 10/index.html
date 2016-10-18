@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Chatroom</title>
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+
+        <video class="cv"></video>
+
+        <!-- chat -->
+        <label for="nickname">Nickname:</label><input type="text" id="nickname"></input>
+        <div id="messages"></div>
+        <textarea id="message"></textarea>
+        <a id="send">Send</a>
+        <video id="vid1" width="100px" height="100px" autoplay></video>
+        <video id="vid2" width="100px" height="100px" autoplay></video>
+
+        <div id="keyboard"></div>
+
+        <!-- chat js -->
+        <script src="/js/adapter.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            //socket = io.connect('http://localhost');
+            socket = io.connect('http://192.168.0.6/');
+            socket.on('message', function(evt) {
+                document.querySelector("#messages").innerHTML += '<p><span class="nickname">'+evt.nickname+': </span><span class="message">' + evt.message +'</span></p>';
+            });
+
+            var sendButton = document.querySelector("#send");
+            sendButton.addEventListener('click', function() {
+
+                socket.emit('message', {
+                  "message": document.querySelector("#message").value,
+                  "nickname": document.querySelector("#nickname").value || 'Guest'
+                });
+
+                document.querySelector("#message").value = "";
+            });
+        </script>
+        <script src="/js/client.js"></script>
+
+
+        <script src="/js/svg.js"></script>
+        <script src="/js/svg.draggable.js"></script>
+        <script src="/js/script.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Media Player</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+  <div id="app">
+    <a id="new-playlist">New Playlist</a>
+    <a id="new-track">Add Track</a>
+    <ul id="playlists"></ul>
+    <ul id="tracks"></ul>
+    <div id="player-controls">
+      <a id="togglePlaying">Play</a>
+    </div>
+
+    <canvas id="visualizer"></canvas>
+
+
+    <div class="controls">
+      <a id="record">Record</a>
+      <a id="play">Play</a>
+      <a id="stop">Stop</a>
+    </div>
+
+    <div id="timeline"></div>
+    <div id="keyboard"></div>
+  </div>
+
+  <audio id="player"></audio>
+
+  <script src="../vendor/jquery.min.js"></script>
+  <script src="../vendor/underscore.min.js"></script>
+  <script src="../vendor/backbone.min.js"></script>
+  <script src="../vendor/backbone.localStorage.js"></script>
+  <script src="../vendor/svg.js"></script>
+  <script src="../vendor/svg.draggable.js"></script>
+  <script src="../vendor/recorder.js"></script>
+  <script src="../vendor/recorderWorker.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/keyboard.js"></script>
+  <script src="js/visualizer.js"></script>
+
+  <!-- Templates -->
+
+  <script type="text/template" id="playlist-template">
+    <li><%= title %></li>
+  </script>
+
+  <script type="text/template" id="track-template">
+    <li>
+      <%= title %>
+      <%= artist %>
+    </li>
+  </script>
+
+  </body>
+</html>

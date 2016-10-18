@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coloring Book</title>
+    <style>
+      body  {
+        margin: 0;
+        padding: 0;
+      }
+      #drop  {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 0;
+      }
+      .button  {
+        background-color: rgba(0,0,0,0.6);
+        color: #fff;
+        display: inline-block;
+        font-family: sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0 0 10px;
+        padding: 5px;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a id="save" class="button">Save</a>
+    <canvas id="drop">
+      <p>Fallback not supported.</p>
+    </canvas>
+    <script src="script.js"></script>
+  </body>
+</html>
